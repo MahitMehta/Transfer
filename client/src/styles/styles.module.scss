@@ -1,0 +1,144 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar_home {
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+}
+
+.home_banner {
+  background: lightgrey;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(187, 185, 255, 1) 100%
+  );
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 5vw;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+
+  .wrapper {
+    width: 45%;
+    padding-top: 25px;
+  }
+
+  .wrapper > * {
+    opacity: 0;
+  }
+
+  .money_transfer_img {
+    padding-left: 5vw;
+    width: 50%;
+    height: auto;
+  }
+
+  @media (max-width: 750px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+
+    .wrapper {
+      width: 75%;
+    }
+
+    .money_transfer_img {
+      padding-left: 0px;
+      margin-top: 10vh;
+      margin-bottom: 5vh;
+      width: 75%;
+      height: auto;
+    }
+  }
+}
+
+.form_section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  z-index: -1;
+  top: 0;
+  margin-bottom: 2.5vh;
+
+  // .form_img {
+  //   min-width: 110px;
+  //   width: 9.5vw;
+  //   margin-top: 20px;
+  //   margin-bottom: 5px;
+  // }
+
+  .form_wrapper {
+    width: 35vw;
+    min-width: 300px;
+
+    h1 {
+      margin-bottom: 15px;
+    }
+
+    .adjacent_field_wrapper {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.deposit_section {
+  h1 {
+    margin-top: 20px;
+  }
+
+  .deposit_methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    overflow: hidden;
+
+    .description {
+      height: 100px;
+      overflow: auto;
+    }
+
+    .description::-webkit-scrollbar {
+      width: 5px;
+      background-color: none;
+    }
+
+    .description::-webkit-scrollbar-thumb {
+      background-color: lightgrey;
+      border-radius: 5px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      margin-top: 50px;
+      margin-bottom: 25px;
+    }
+
+    p {
+      margin-bottom: 25px;
+    }
+
+    .deposit_methods {
+      justify-content: center;
+      margin-top: 25px;
+    }
+  }
+}
+
+.crypto_coin_div {
+  height: 35px;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0px;
+}
