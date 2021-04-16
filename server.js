@@ -2,20 +2,14 @@ const express = require('express')
 const app = express()
 const payment = require('./routes/payment')
 const path = require('path')
+const bodyParser = require('body-parser');
 
-app.use(function(req, _, next) {
-    req.rawBody = '';
-    req.setEncoding('utf8');
-
-    req.on('data', function(chunk) { 
-        req.rawBody += chunk;
-    });
-
-    req.on('end', function() {
-        next();
-    });
-});
-app.use(express.bodyParser());
+var rawBodySaver = function (req, res, buf, encoding) {
+    if (buf && buf.length) {
+        req.rawBody = buf.toString(encoding || 'utf8');
+    }
+}
+app.use(bodyParser.json({ verify: rawBodySaver, extended: true }));
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use("/api/payment", payment);
