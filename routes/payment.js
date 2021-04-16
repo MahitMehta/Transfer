@@ -52,7 +52,7 @@ router.post('/crypto/charge-status', (req, res) => {
     const webHookSecret = process.env.TRANSFER_COINBASE_WEBHOOK_SIGNATURE
 
     try {
-        const event = Webhook.verifyEventBody(rawBody, webHookSecret, signature)
+        const event = Webhook.verifyEventBody(rawBody, signature, webHookSecret)
 
         if (event.type === "charge:confirmed") {
             console.log(event)
