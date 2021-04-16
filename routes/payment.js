@@ -50,7 +50,7 @@ router.post('/crypto/charge-status', (req, res) => {
     const rawBody = req.rawBody
     const signature = req.headers['x-cc-webhook-signature']
     const webHookSecret = process.env.TRANSFER_COINBASE_WEBHOOK_SIGNATURE
-
+    console.log(rawBody, signature, webHookSecret)
     try {
         const event = Webhook.verifyEventBody(rawBody, signature, webHookSecret)
 
@@ -68,8 +68,8 @@ router.post('/crypto/charge-status', (req, res) => {
 
         res.sendStatus(200);
     }
-    catch {
-        console.log("Error")
+    catch (error) {
+        console.log(error)
         res.sendStatus(403)
     }
 })
