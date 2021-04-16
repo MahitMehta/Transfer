@@ -68,8 +68,7 @@ router.post('/crypto/charge-status', (req, res) => {
 
         res.sendStatus(200);
     }
-    catch (error) {
-        console.log(error)
+    catch {
         res.sendStatus(403)
     }
 })
