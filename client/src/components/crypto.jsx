@@ -26,6 +26,7 @@ const Crypto = () => {
     const [ invoiceRes, setInvoiceRes ] = useState({}); 
     const [ userData, setUserData ] = useState({});
     const [ err, setErr ] = useState(false);
+    const [ invoiceErr, setInvoiceErr ] = useState(false);
 
     const createInvoice = async (amount, currency, uid) => {
         const encryptedUid = btoa(uid);
@@ -48,20 +49,29 @@ const Crypto = () => {
         const uid = userData.uid; 
 
         if (!depositUserAmount || depositUserCurrency === "Choose") {
+            setInvoiceErr(true);
             return 
         }
 
         createInvoice(depositUserAmount, depositUserCurrency, uid)
         .then(res => {
+            setInvoiceErr(false);
             setInvoiceRes(res);
         })
     }
 
     useEffect(() => {
-        const userDataRetrieved = JSON.parse(atob(sessionStorage.getItem("user")));
+        const rawUserData = sessionStorage.getItem("user");
+        if (!rawUserData) {
+            console.log("No Userdata Detected. Redirect User");
+            setErr(true);
+            return 
+        }
+        const userDataRetrieved = JSON.parse(atob(rawUserData));
         if (!userDataRetrieved || !Object.keys(userDataRetrieved).length) {
             console.log("No Userdata Detected. Redirect User");
             setErr(true);
+            return 
         }
         if (!Object.keys(userDataRetrieved).length || err)
             setUserData(userDataRetrieved);
@@ -104,6 +114,11 @@ const Crypto = () => {
                                     <b>Note:</b> The Admin Will Receive a Confirmation via Whatsapp Upon Success.
                                 </Alert>
                             </React.Fragment>
+                        ) : ""
+                    }
+                    {
+                        invoiceErr ? (
+                            <Alert variant="danger">Please Fill in All the Fields!</Alert>
                         ) : ""
                     }
                     <Button onClick={queryInvoice}>Create Invoice</Button>
