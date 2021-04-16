@@ -97,12 +97,12 @@ const User = () => {
                             description="Deposit using your Coinbase Wallet and various crypto's such as Bitcoin, Ethereum, Litecoin, and more."
                             redirect="crypto"
                             />
-                        <DepositMethod 
+                        {/* <DepositMethod 
                             img={WalletMethodSVG} 
                             title="Skrill Wallet"
                             description="Deposit with your Skrill Wallet in addition to the possibility of depositing with various other methods."
                             redirect="crypto"
-                             />
+                             /> */}
                     </div>
                 </Container>
             </Jumbotron>
